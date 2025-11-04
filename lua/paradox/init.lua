@@ -198,62 +198,17 @@ local function get_groups()
   }
   local colors = colorgroups[bg]
   local groups = {
-    Normal = { fg = colors.bg11, bg = colors.bg2 },
-    NormalFloat = { fg = colors.bg11, bg = colors.bg1 },
     -- NormalNC = { link = "NormalFloat" },
-    CursorLine = { bg = colors.bg3 },
-    CursorLineNr = { fg = colors.bg11, bg = colors.bg3 },
-    ColorColumn = { bg = colors.bg3 },
-    LineNr = { fg = colors.bg6 },
-    Search = { reverse = true },
-    IncSearch = { link = "Search" },
-    CurSearch = { link = "IncSearch" },
-    Special = { fg = colors.hue72 },
-    Visual = { bg = colors.bg4 },
-    VisualNOS = { link = "Visual" },
-    MatchParen = { reverse = true },
-    Title = { fg = colors.hue45 },
-    ModeMsg = { link = "Normal", bold = true },
-
-    TabLineFill = { bg = colors.bg1 }, -- 标签栏
-    TabLine = { link = "TabLineFill" }, -- 非当前标签
-    TabLineSel = { fg = colors.hue44, bg = colors.bg2, bold = true }, -- 当前标签选中
-
-    Error = { fg = colors.hue72 },
-    ErrorMsg = { fg = colors.bg2, bg = colors.hue72 },
 
     Added = { fg = colors.hue36 },
     Removed = { fg = colors.hue72 },
-    WinBar = { bg = colors.bg2 },
-    WinBarNC = { link = "WinBar" },
 
-    Constant = { fg = colors.hue1 },
-    Function = { fg = colors.hue46 },
-    Keyword = { fg = colors.hue52 },
-    Boolean = { fg = colors.hue72 },
-    Number = { fg = colors.hue72 },
-    String = { fg = colors.hue17 },
-    Comment = { fg = colors.bg7 },
-    Operator = { fg = colors.hue72 },
-    Delimiter = { fg = colors.bg12 },
-    Type = { fg = colors.hue30 },
-    Structure = { fg = colors.hue72 },
-    Folded = { bg = colors.bg3, fg = colors.hue36 },
-
-    PmenuThumb = { bg = colors.hue5 },
-    PmenuMatch = { fg = colors.hue52 },
-    Pmenu = { bg = colors.bg3 },
     -- WinSeparator = { fg = colors.hue5 },
-    DiagnosticError = { fg = colors.hue72 },
-    DiagnosticWarn = { fg = colors.hue9 },
-    -- DiagnosticUnderlineError = { sp = colors.hue72, undercurl = true },
-    -- DiagnosticUnderlineWarn = { fg = colors.hue9 },
 
     cString = { link = "String" },
     cType = { fg = colors.hue52 },
     cTypedef = { fg = colors.hue35 },
     cStructure = { link = "Structure" },
-    ["@lsp.type.class.c"] = { link = "cType" },
     cRepeat = { fg = colors.hue72 },
     cConditional = { fg = colors.hue72 },
     cStatement = { fg = colors.hue72 },
@@ -262,6 +217,60 @@ local function get_groups()
     StatusLine = { fg = colors.bg11, bg = colors.bg1 },
     Substitute = { fg = colors.hue60, bg = colors.bg2 },
 
+    Label = { fg = colors.hue50, bold = true },
+  }
+  local syntax = {
+    Error = { fg = colors.hue72 },
+    Boolean = { fg = colors.hue72 },
+    Comment = { fg = colors.bg7 },
+    Constant = { fg = colors.hue1 },
+    Delimiter = { fg = colors.bg12 },
+    Function = { fg = colors.hue46 },
+    Keyword = { fg = colors.hue52 },
+    Number = { fg = colors.hue72 },
+    Operator = { fg = colors.hue72 },
+    String = { fg = colors.hue17 },
+    Structure = { fg = colors.hue72 },
+    Type = { fg = colors.hue30 },
+    Special = { fg = colors.hue72 },
+  }
+  local editor = {
+    -- NormalMode
+    -- InsertMode
+    -- ReplaceMode
+    -- VisualMode
+    -- CommandMode
+
+    -- used for the columns set with 'colorcolumn'
+    ColorColumn = { bg = colors.bg3 },
+    CurSearch = { link = "IncSearch" },
+    -- Screen-line at the cursor, when 'cursorline' is set. Low-priority if foreground (ctermfg OR guifg) is not set.
+    CursorLine = { bg = colors.bg3 },
+    -- Like LineNr when 'cursorline' or 'relativenumber' is set for the cursor line.
+    CursorLineNr = { fg = colors.bg11, bg = colors.bg3 },
+    ErrorMsg = { fg = colors.bg2, bg = colors.hue72 },
+    FloatBorder = { fg = colors.hue1, bg = colors.bg1 },
+    Folded = { bg = colors.bg3, fg = colors.hue36 },
+    IncSearch = { link = "Search" },
+    LineNr = { fg = colors.bg6 },
+    MatchParen = { reverse = true },
+    ModeMsg = { link = "Normal", bold = true },
+    Normal = { fg = colors.bg11, bg = colors.bg2 },
+    NormalFloat = { fg = colors.bg11, bg = colors.bg1 },
+    Pmenu = { bg = colors.bg3 },
+    PmenuMatch = { fg = colors.hue52 },
+    PmenuThumb = { bg = colors.hue5 },
+    Search = { reverse = true },
+    TabLine = { link = "TabLineFill" }, -- 非当前标签
+    TabLineFill = { bg = colors.bg1 }, -- 标签栏
+    TabLineSel = { fg = colors.hue44, bg = colors.bg2, bold = true }, -- 当前标签选中
+    Title = { fg = colors.hue45 },
+    Visual = { bg = colors.bg4 },
+    VisualNOS = { link = "Visual" },
+    WinBar = { bg = colors.bg2 },
+    WinBarNC = { link = "WinBar" },
+  }
+  local treesitter = {
     ["@keyword"] = { link = "Keyword" },
     ["@function"] = { link = "Function" },
     ["@function.call"] = { link = "Function" },
@@ -276,20 +285,93 @@ local function get_groups()
     ["@constant"] = { link = "Constant" },
     ["@constant.builtin"] = { link = "Constant" },
 
-    ["@lsp.type.variable"] = {},
-
     ["@tag"] = { fg = colors.hue72, bold = true },
     ["@tag.attribute"] = { fg = colors.hue48 },
     ["@tag.delimiter"] = { link = "Delimiter" },
     ["@tag.builtin"] = { fg = colors.hue72, bold = false },
-
-    Label = { fg = colors.hue50, bold = true },
     ["@label"] = { link = "Label" },
     ["@label.vimdoc"] = { link = "Label" },
     ["@markup.link"] = { fg = colors.hue62 },
     ["@markup.link.label"] = { link = "@markup.link" },
     ["@markup.link.vimdoc"] = { link = "@markup.link" },
+  }
+  local lsp = {
+    -- -- used for "Error" diagnostic virtual text
+    -- LspDiagnosticsDefaultError = { fg = colors.error },
+    -- -- used for "Error" diagnostic signs in sign column
+    -- LspDiagnosticsSignError = { fg = colors.error },
+    -- -- used for "Error" diagnostic messages in the diagnostics float
+    -- LspDiagnosticsFloatingError = { fg = colors.error },
+    -- -- Virtual text "Error"
+    -- LspDiagnosticsVirtualTextError = { fg = colors.error },
+    -- -- used to underline "Error" diagnostics.
+    -- LspDiagnosticsUnderlineError = { style = config.styles.diagnostics, sp = colors.error },
+    -- -- used for "Warning" diagnostic signs in sign column
+    -- LspDiagnosticsDefaultWarning = { fg = colors.warn },
+    -- -- used for "Warning" diagnostic signs in sign column
+    -- LspDiagnosticsSignWarning = { fg = colors.warn },
+    -- -- used for "Warning" diagnostic messages in the diagnostics float
+    -- LspDiagnosticsFloatingWarning = { fg = colors.warn },
+    -- -- Virtual text "Warning"
+    -- LspDiagnosticsVirtualTextWarning = { fg = colors.warn },
+    -- -- used to underline "Warning" diagnostics.
+    -- LspDiagnosticsUnderlineWarning = { style = config.styles.diagnostics, sp = colors.warn },
+    -- -- used for "Information" diagnostic virtual text
+    -- LspDiagnosticsDefaultInformation = { fg = colors.info },
+    -- -- used for "Information" diagnostic signs in sign column
+    -- LspDiagnosticsSignInformation = { fg = colors.info },
+    -- -- used for "Information" diagnostic messages in the diagnostics float
+    -- LspDiagnosticsFloatingInformation = { fg = colors.info },
+    -- -- Virtual text "Information"
+    -- LspDiagnosticsVirtualTextInformation = { fg = colors.info },
+    -- -- used to underline "Information" diagnostics.
+    -- LspDiagnosticsUnderlineInformation = { style = config.styles.diagnostics, sp = colors.info },
+    -- -- used for "Hint" diagnostic virtual text
+    -- LspDiagnosticsDefaultHint = { fg = colors.hint },
+    -- -- used for "Hint" diagnostic signs in sign column
+    -- LspDiagnosticsSignHint = { fg = colors.hint },
+    -- -- used for "Hint" diagnostic messages in the diagnostics float
+    -- LspDiagnosticsFloatingHint = { fg = colors.hint },
+    -- -- Virtual text "Hint"
+    -- LspDiagnosticsVirtualTextHint = { fg = colors.hint },
+    -- -- used to underline "Hint" diagnostics.
+    -- LspDiagnosticsUnderlineHint = { style = config.styles.diagnostics, sp = colors.hint },
+    -- -- used for highlighting "text" references
+    -- LspReferenceText = { style = "underline", sp = colors.yellow },
+    -- -- used for highlighting "read" references
+    -- LspReferenceRead = { style = "underline", sp = colors.yellow },
+    -- -- used for highlighting "write" references
+    -- LspReferenceWrite = { style = "underline", sp = colors.yellow },
+    --
+    -- LspSignatureActiveParameter = { fg = colors.none, bg = colors.highlight_dark, style = "bold" },
+    -- LspCodeLens = { fg = colors.light_gray },
+    -- LspInlayHint = { fg = colors.light_gray, bg = colors.active },
 
+    DiagnosticError = { fg = colors.hue72 },
+    DiagnosticWarn = { fg = colors.hue9 },
+    -- DiagnosticInfo = { link = "LspDiagnosticsDefaultInformation" },
+    -- DiagnosticHint = { link = "LspDiagnosticsDefaultHint" },
+    -- DiagnosticVirtualTextWarn = { link = "LspDiagnosticsVirtualTextWarning" },
+    -- DiagnosticUnderlineWarn = { link = "LspDiagnosticsUnderlineWarning" },
+    -- DiagnosticFloatingWarn = { link = "LspDiagnosticsFloatingWarning" },
+    -- DiagnosticSignWarn = { link = "LspDiagnosticsSignWarning" },
+    -- DiagnosticVirtualTextError = { link = "LspDiagnosticsVirtualTextError" },
+    -- DiagnosticUnderlineError = { link = "LspDiagnosticsUnderlineError" },
+    -- DiagnosticFloatingError = { link = "LspDiagnosticsFloatingError" },
+    -- DiagnosticSignError = { link = "LspDiagnosticsSignError" },
+    -- DiagnosticVirtualTextInfo = { link = "LspDiagnosticsVirtualTextInformation" },
+    -- DiagnosticUnderlineInfo = { link = "LspDiagnosticsUnderlineInformation" },
+    -- DiagnosticFloatingInfo = { link = "LspDiagnosticsFloatingInformation" },
+    -- DiagnosticSignInfo = { link = "LspDiagnosticsSignInformation" },
+    -- DiagnosticVirtualTextHint = { link = "LspDiagnosticsVirtualTextHint" },
+    -- DiagnosticUnderlineHint = { link = "LspDiagnosticsUnderlineHint" },
+    -- DiagnosticFloatingHint = { link = "LspDiagnosticsFloatingHint" },
+    -- DiagnosticSignHint = { link = "LspDiagnosticsSignHint" },
+    ["@lsp.type.variable"] = {},
+    ["@lsp.type.class.c"] = { link = "cType" },
+  }
+
+  local plugins = {
     BlinkCmpLabelDeprecated = { strikethrough = true },
     BlinkCmpKind = { fg = colors.hue52 },
     -- BlinkCmpKindFunction = { fg = colors.hue52, bg = "#f0d2a0" },
@@ -463,8 +545,37 @@ local function get_groups()
       -- fg = colors.hue48,
     },
     NavicSeparator = { fg = colors.bg7 },
+    -- -- Navic
+    -- NavicIconsFile = { bg = colors.active, fg = colors.blue },
+    -- NavicIconsModule = { bg = colors.active, fg = colors.blue },
+    -- NavicIconsNamespace = { bg = colors.active, fg = colors.yellow },
+    -- NavicIconsPackage = { bg = colors.active, fg = colors.orange },
+    -- NavicIconsClass = { bg = colors.active, fg = colors.yellow },
+    -- NavicIconsMethod = { bg = colors.active, fg = colors.purple },
+    -- NavicIconsProperty = { bg = colors.active, fg = colors.blue },
+    -- NavicIconsField = { bg = colors.active, fg = colors.blue },
+    -- NavicIconsConstructor = { bg = colors.active, fg = colors.yellow },
+    -- NavicIconsEnum = { bg = colors.active, fg = colors.yellow },
+    -- NavicIconsInterface = { bg = colors.active, fg = colors.yellow },
+    -- NavicIconsFunction = { bg = colors.active, fg = colors.purple },
+    -- NavicIconsVariable = { bg = colors.active, fg = colors.blue },
+    -- NavicIconsConstant = { bg = colors.active, fg = colors.orange },
+    -- NavicIconsString = { bg = colors.active, fg = colors.green },
+    -- NavicIconsNumber = { bg = colors.active, fg = colors.orange },
+    -- NavicIconsBoolean = { bg = colors.active, fg = colors.orange },
+    -- NavicIconsArray = { bg = colors.active, fg = colors.yellow },
+    -- NavicIconsObject = { bg = colors.active, fg = colors.orange },
+    -- NavicIconsKey = { bg = colors.active, fg = colors.purple },
+    -- NavicIconsNull = { bg = colors.active, fg = colors.red },
+    -- NavicIconsEnumMember = { bg = colors.active, fg = colors.cyan },
+    -- NavicIconsStruct = { bg = colors.active, fg = colors.yellow },
+    -- NavicIconsEvent = { bg = colors.active, fg = colors.purple },
+    -- NavicIconsOperator = { bg = colors.active, fg = colors.purple },
+    -- NavicIconsTypeParameter = { bg = colors.active, fg = colors.yellow },
+    -- NavicText = { bg = colors.active, fg = colors.fg },
+    -- NavicSeparator = { bg = colors.active, fg = colors.cyan },
   }
-  return groups
+  return vim.tbl_deep_extend("force", groups, syntax, editor, treesitter, lsp, plugins)
 end
 
 function M.loader()
